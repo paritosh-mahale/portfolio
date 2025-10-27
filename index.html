@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paritosh Mahale | Senior Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      /* BASE STYLES & TYPOGRAPHY */
+      .gradient-text {
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+        background-image: linear-gradient(
+          to right,
+          #22d3ee,
+          #4f46e5
+        ); /* cyan-400 to indigo-600 */
+      }
+
+      /* Highlight Keywords in About Section */
+      .highlight-keyword {
+        @apply text-cyan-400 font-semibold italic;
+      }
+
+      /* CUSTOM MOUSE POINTER */
+      body {
+        cursor: none; /* Hide default cursor */
+      }
+      .cursor {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #22d3ee;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.2s ease-out, border-color 0.4s ease-out;
+        transform: translate(-50%, -50%);
+      }
+      .cursor-dot {
+        width: 6px;
+        height: 6px;
+        background-color: #4f46e5;
+        border-radius: 50%;
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+      }
+      a:hover ~ .cursor,
+      button:hover ~ .cursor,
+      .tech-chip:hover ~ .cursor,
+      .experience-card:hover ~ .cursor {
+        transform: translate(-50%, -50%) scale(2);
+        border-color: #4f46e5;
+      }
+
+      /* PARALLAX BACKGROUND */
+      .parallax-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("https://images.unsplash.com/photo-1515879222474-be4818a7c64a?q=80&w=1920&h=1080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        background-size: cover;
+        background-position: center;
+        z-index: -10;
+        opacity: 0.04;
+        transition: transform 0.1s linear;
+      }
+
+      /* SKILLS CHIP STYLING */
+      .tech-chip {
+        @apply flex items-center px-4 py-2 bg-gray-800 text-gray-200 rounded-full text-sm transition-all duration-200 cursor-pointer 
+                   border border-gray-700 ring-1 ring-gray-700/50;
+      }
+      .tech-chip:hover {
+        @apply bg-indigo-700 text-white 
+                   border-indigo-500 shadow-md shadow-indigo-500/30 ring-2 ring-indigo-500;
+      }
+
+      .tech-tag {
+        @apply px-2 py-0.5 text-xs bg-gray-800 text-cyan-300 rounded-md;
+      }
+
+      /* EXPERIENCE CARD STYLING (Inspired by Reference Image) */
+      .experience-card-new {
+        background-color: #1a1a1a;
+        border: 1px solid #282836; /* Darker border for contrast */
+        border-radius: 0.75rem; /* rounded-xl */
+        padding: 1.5rem; /* p-6 */
+        margin-bottom: 2rem;
+        transition: all 0.3s ease-in-out;
+        position: relative;
+      }
+      .experience-card-new:hover {
+        border-color: #4f46e5; /* Indigo hover border */
+        box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
+      }
+
+      /* Vertical Line mimicking image style */
+      .experience-container {
+        position: relative;
+        padding-left: 20px; /* Space for the vertical line */
+      }
+      .experience-container::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 2px;
+        background-color: #4f46e5; /* Indigo line */
+      }
+      .experience-dot {
+        position: absolute;
+        left: -8px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background-color: #4f46e5; /* Indigo dot */
+        border: 3px solid #1a1a1a; /* Background color for halo effect */
+        z-index: 10;
+        top: 35px; /* Adjust vertical position */
+      }
+      .text-highlight {
+        --tw-text-opacity: 1;
+        /* color: rgb(255 255 255); */
+        font-weight: 600;
+      }
+      .text-purple-600 {
+        --tw-text-opacity: 1;
+        color: rgb(192 132 252 / var(--tw-text-opacity, 1));
+        font-weight: 600;
+      }
+      .text-yellow-600 {
+        --tw-text-opacity: 1;
+        color: rgb(199 185 88);
+        font-weight: 600;
+      }
+      .text-red-600 {
+        --tw-text-opacity: 1;
+        color: rgb(187 8 8);
+        font-weight: 600;
+      }
+
+      .text-pink-600 {
+        --tw-text-opacity: 1;
+        color: rgb(244 114 182 / var(--tw-text-opacity, 1));
+        font-weight: 600;
+      }
+      .text-green-600 {
+        --tw-text-opacity: 1;
+        color: rgb(74 222 128 / var(--tw-text-opacity, 1));
+        font-weight: 600;
+      }
+      .text-blue-600 {
+        --tw-text-opacity: 1;
+        color: rgb(96 165 250 / var(--tw-text-opacity, 1));
+        font-weight: 600;
+      }
+      .colorful-underline::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px; /* Thickness of the line */
+        bottom: -2px; /* Position below text */
+        left: 0;
+        background-image: linear-gradient(
+          to right,
+          #22d3ee,
+          #4f46e5
+        ); /* Gradient from cyan to indigo */
+        opacity: 0.8;
+        border-radius: 2px;
+      }
+      .colorful-underline {
+        position: relative;
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-950 text-gray-100 font-sans">
+    <div class="cursor hidden md:block"></div>
+    <div class="cursor-dot hidden md:block"></div>
+    <div class="parallax-bg" id="parallax-bg"></div>
+
+    <header
+      class="sticky top-0 z-50 bg-gray-950/80 backdrop-blur-sm border-b border-white/10"
+    >
+      <nav
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <a
+          href="#"
+          class="text-2xl font-bold tracking-wider"
+          data-aos="fade-down"
+        >
+          <img
+            src="profile.jpeg"
+            alt="Profile"
+            class="w-10 h-10 rounded-full inline-block mr-2 align-middle"
+          />
+          Paritosh Mahale
+        </a>
+        <div class="hidden md:flex space-x-8">
+          <a
+            href="#about"
+            class="nav-link text-gray-400 hover:text-cyan-400 transition duration-300"
+            >About</a
+          >
+          <a
+            href="#techstack"
+            class="nav-link text-gray-400 hover:text-cyan-400 transition duration-300"
+            >Tech Stack</a
+          >
+          <a
+            href="#experience"
+            class="nav-link text-gray-400 hover:text-cyan-400 transition duration-300"
+            >Experience</a
+          >
+          <a
+            href="#contact"
+            class="nav-link text-gray-400 hover:text-cyan-400 transition duration-300"
+            >Contact</a
+          >
+        </div>
+        <a
+          href="#"
+          class="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded text-sm font-medium transition duration-300"
+          ><i class="fas fa-download mr-2"></i>
+          Download Resume
+        </a>
+      </nav>
+    </header>
+
+    <section
+      id="header-section"
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 text-center relative overflow-hidden"
+    >
+      <h1
+        class="text-7xl sm:text-8xl font-extrabold mb-4 relative"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        Paritosh Mahale
+      </h1>
+      <h2
+        class="text-3xl sm:text-4xl font-semibold mb-10 relative gradient-text"
+      >
+        <span id="typing-text"></span><span class="animate-pulse">|</span>
+      </h2>
+      <p
+        class="text-xl max-w-3xl mx-auto mb-10 text-gray-400 relative"
+        data-aos="fade-up"
+        data-aos-delay="600"
+      >
+        Building scalable solutions and driving high-performance teams toward
+        successful outcomes.
+      </p>
+
+      <div class="space-x-4 relative" data-aos="fade-up" data-aos-delay="800">
+        <a
+          href="#experience"
+          class="px-8 py-3 bg-cyan-500 text-gray-950 font-bold rounded-lg hover:bg-cyan-400 transition duration-300 shadow-lg hover:shadow-cyan-500/50"
+        >
+          View My Work
+        </a>
+        <a
+          href="#contact"
+          class="px-8 py-3 border border-indigo-600 text-indigo-400 rounded-lg hover:bg-indigo-600 hover:text-white transition duration-300"
+        >
+          Contact Me
+        </a>
+      </div>
+    </section>
+
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <h2
+        class="text-4xl font-bold mb-12 text-center gradient-text"
+        data-aos="fade-up"
+      >
+        About Me
+      </h2>
+      <div class="flex flex-col md:flex-row items-center gap-12">
+        <div class="md:w-2/3" data-aos="fade-right">
+          <p class="mb-6 text-lg text-gray-300">
+            I’m a results-driven
+            <span class="text-highlight colorful-underline"
+              >Senior Software Engineer</span
+            >
+            with over 9+ years of experience
+            <span class="text-highlight colorful-underline"
+              >designing, developing, and delivering scalable, high-performance
+            </span>
+            web applications. My expertise spans the
+            <span class="text-highlight colorful-underline">Node.js</span>,
+            <span class="text-highlight colorful-underline">React</span>,
+            <span class="text-highlight colorful-underline">Next.js</span> and
+            <span class="text-highlight colorful-underline">Python</span>
+            ecosystems, enabling me to contribute effectively across the full
+            product development lifecycle — from architecture and design to
+            deployment and maintenance.
+          </p>
+          <p class="text-lg text-gray-300">
+            I take pride in writing
+            <span class="text-highlight colorful-underline"
+              >clean, maintainable, and production-ready code</span
+            >, consistently adhering to best practices and modern development
+            standards using tools like ESLint and Prettier. Beyond technical
+            proficiency, I’m deeply
+            <span class="text-highlight colorful-underline"
+              >committed to collaboration and continuous improvement</span
+            >, working closely with cross-functional teams to transform business
+            needs into efficient, reliable, and impactful software solutions.
+          </p>
+        </div>
+        <div
+          class="p-6 bg-gray-900 rounded-xl border border-green-700 shadow-2xl"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-green-400">
+            <i class="fas fa-laptop-code mr-3"></i>Key Information
+          </h3>
+          <div class="gap-3">
+            <p class="mb-2">
+              <strong class="text-gray-400">Experience:</strong> 9+ Years
+            </p>
+            <p class="mb-2">
+              <strong class="text-gray-400">Role:</strong> Lead Engineer
+            </p>
+            <p class="mb-2">
+              <strong class="text-gray-400">Education:</strong> Bachelor of
+              Engineering in IT
+            </p>
+            <p>
+              <strong class="text-gray-400">Contact:</strong>
+              paritosh.mahale@gmail.com
+            </p>
+          </div>
+        </div>
+        <!-- <div
+          class="md:w-1/3 p-6 bg-gray-900 rounded-lg shadow-xl border border-indigo-700"
+          data-aos="fade-left"
+        >
+          <h3 class="text-xl font-semibold mb-4 text-cyan-400">
+            Key Information
+          </h3>
+          <p class="mb-2">
+            <strong class="text-gray-400">Experience:</strong> 6 Years
+          </p>
+          <p class="mb-2">
+            <strong class="text-gray-400">Role:</strong> Senior Software
+            Engineer
+          </p>
+          <p class="mb-2">
+            <strong class="text-gray-400">Education:</strong> Bachelor of
+            Engineering in IT
+          </p>
+          <p>
+            <strong class="text-gray-400">Contact:</strong>
+            paritosh.mahale@gmail.com
+          </p>
+        </div> -->
+      </div>
+    </section>
+
+    <section id="techstack" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <h2
+        class="text-4xl font-bold mb-12 text-center gradient-text"
+        data-aos="fade-up"
+      >
+        Tech Stack
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div
+          class="p-6 bg-gray-900 rounded-xl border border-cyan-700 shadow-2xl"
+          data-aos="zoom-in"
+          data-aos-delay="100"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-cyan-400">
+            <i class="fas fa-desktop mr-3"></i>Frontend Development
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="tech-chip text-blue-400 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-react mr-2"></i>ReactJS</span
+            >
+            <span
+              class="tech-chip text-white px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-layer-group mr-2"></i>NextJS</span
+            >
+            <span
+              class="tech-chip text-blue-500 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-code mr-2"></i>TypeScript</span
+            >
+            <span
+              class="tech-chip text-yellow-400 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-js-square mr-2"></i>JavaScript</span
+            >
+            <span
+              class="tech-chip text-blue-500 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-bolt mr-2"></i>JQuery</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="p-6 bg-gray-900 rounded-xl border border-indigo-700 shadow-2xl"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-indigo-400">
+            <i class="fas fa-server mr-3"></i>Backend Development
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="tech-chip text-green-500 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-node-js mr-2"></i>NodeJS</span
+            >
+            <span
+              class="tech-chip text-gray-400 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-leaf mr-2"></i>Express</span
+            >
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-exchange-alt mr-2"></i>REST API</span
+            >
+            <span
+              class="tech-chip text-blue-400 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-python mr-2"></i>Python</span
+            >
+            <span
+              class="tech-chip text-white px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-wine-bottle mr-2"></i>Flask</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="p-6 bg-gray-900 rounded-xl border border-yellow-700 shadow-2xl"
+          data-aos="zoom-in"
+          data-aos-delay="300"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-yellow-400">
+            <i class="fas fa-database mr-3"></i>Databases
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="tech-chip text-blue-500 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-circle-notch mr-2"></i>MySQL</span
+            >
+            <span
+              class="tech-chip text-blue-600 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-paw mr-2"></i>PostgreSQL</span
+            >
+            <span
+              class="tech-chip text-green-600 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-leaf mr-2"></i>MongoDB</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="p-6 bg-gray-900 rounded-xl border border-green-700 shadow-2xl"
+          data-aos="zoom-in"
+          data-aos-delay="400"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-green-400">
+            <i class="fas fa-cloud-upload-alt mr-3"></i>Cloud & DevOps
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="tech-chip text-orange-500 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-aws mr-2"></i>AWS</span
+            >
+            <span
+              class="tech-chip text-blue-400 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-docker mr-2"></i>Docker</span
+            >
+            <span
+              class="tech-chip text-blue-600 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-cogs mr-2"></i>Kubernates</span
+            >
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-rocket mr-2"></i>CI/CD</span
+            >
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-github mr-2"></i>GitHub</span
+            >
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-cubes mr-2"></i>Microservices</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="p-6 bg-gray-900 rounded-xl border border-red-700 shadow-2xl col-span-1 md:col-span-2 lg:col-span-1"
+          data-aos="zoom-in"
+          data-aos-delay="500"
+        >
+          <h3 class="text-2xl font-semibold mb-4 text-red-400">
+            <i class="fas fa-tools mr-3"></i>Other Tools
+          </h3>
+          <div class="flex flex-wrap gap-3">
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-git-alt mr-2"></i>Git</span
+            >
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-paper-plane mr-2"></i>Postman</span
+            >
+            <span
+              class="tech-chip px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-terminal mr-2"></i>VSCode</span
+            >
+            <span
+              class="tech-chip text-yellow-500 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fab fa-chrome mr-2"></i>Chrome DevTools</span
+            >
+            <span
+              class="tech-chip text-blue-600 px-3 py-1 bg-slate-800/50 backdrop-blur-sm border border-slate-700/50 rounded-lg text-sm font-medium hover:border-blue-500/50 hover:text-blue-400 transition-all duration-300"
+              ><i class="fas fa-box-open mr-2"></i>Webpack</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="experience"
+      class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+    >
+      <h2
+        class="text-4xl font-bold mb-16 text-center gradient-text"
+        data-aos="fade-up"
+      >
+        Professional Journey
+      </h2>
+
+      <div class="experience-container">
+        <div class="experience-dot" style="top: 25px"></div>
+        <div class="experience-card-new" data-aos="fade-up">
+          <h3 class="font-bold text-2xl text-cyan-400 mb-1">
+            Senior Software Engineer
+          </h3>
+          <p class="text-lg text-gray-300 mb-4">
+            VertiSystem <span class="text-indigo-400">(ProjectForce)</span>
+          </p>
+
+          <div class="flex items-center space-x-4 text-sm text-gray-400 mb-4">
+            <span
+              ><i class="fas fa-calendar-alt mr-2 text-cyan-500"></i>Jan 2023 -
+              Present</span
+            >
+            <span
+              ><i class="fas fa-map-marker-alt mr-2 text-cyan-500"></i
+              >Remote</span
+            >
+            <span
+              class="px-2 py-0.5 bg-gray-800 text-xs rounded-full border border-gray-700"
+              >Full-time</span
+            >
+          </div>
+
+          <p class="mb-4 text-gray-400 text-base">
+            Led frontend development for cross-platform mobile app and web
+            platform. Architected scalable solutions serving 100K+ users.
+          </p>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-medal mr-2"></i>Key Achievements
+          </p>
+          <ul
+            class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4 mb-4"
+          >
+            <li>
+              **Spearheaded** full-stack feature development (Frontend &
+              Backend).
+            </li>
+            <li>
+              Architected web platform serving **100K+** users with **GraphQL**
+              APIs.
+            </li>
+            <li>Integrated AI/LLM workflows for enhanced user experience.</li>
+            <li>Managed bug resolution and ensured high-quality code.</li>
+          </ul>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-tools mr-2"></i>Technologies Used
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-chip text-red-400"
+              ><i class="fab fa-react mr-2"></i>React Native</span
+            >
+            <span class="tech-chip text-white"
+              ><i class="fas fa-layer-group mr-2"></i>NextJS</span
+            >
+            <span class="tech-chip text-pink-400"
+              ><i class="fas fa-cube mr-2"></i>GraphQL</span
+            >
+            <span class="tech-chip text-blue-400"
+              ><i class="fas fa-gem mr-2"></i>Apollo Client</span
+            >
+            <span class="tech-chip"
+              ><i class="fas fa-toolbox mr-2"></i>Redux Toolkit</span
+            >
+            <span class="tech-chip text-green-400"
+              ><i class="fas fa-brain mr-2"></i>AI/LLM</span
+            >
+          </div>
+        </div>
+
+        <div class="experience-dot" style="top: 480px"></div>
+        <div
+          class="experience-card-new"
+          data-aos="fade-up"
+          data-aos-delay="100"
+        >
+          <h3 class="font-bold text-2xl text-cyan-400 mb-1">Web Engineer</h3>
+          <p class="text-lg text-gray-300 mb-4">
+            Collabra <span class="text-indigo-400">(Gilead RBM)</span>
+          </p>
+
+          <div class="flex items-center space-x-4 text-sm text-gray-400 mb-4">
+            <span
+              ><i class="fas fa-calendar-alt mr-2 text-cyan-500"></i>July 2022 -
+              Jan 2023</span
+            >
+            <span
+              ><i class="fas fa-map-marker-alt mr-2 text-cyan-500"></i
+              >Hybrid</span
+            >
+            <span
+              class="px-2 py-0.5 bg-gray-800 text-xs rounded-full border border-gray-700"
+              >Full-time</span
+            >
+          </div>
+
+          <p class="mb-4 text-gray-400 text-base">
+            Developed features for a critical Regulatory Board Management system
+            in the healthcare sector.
+          </p>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-medal mr-2"></i>Key Achievements
+          </p>
+          <ul
+            class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4 mb-4"
+          >
+            <li>
+              Implemented **React wrapper component** for seamless JS library
+              integration.
+            </li>
+            <li>
+              Contributed to team collaboration for production deployment and
+              maintenance.
+            </li>
+            <li>
+              Improved component modularity, leading to a 15% reduction in code
+              complexity.
+            </li>
+          </ul>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-tools mr-2"></i>Technologies Used
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-chip text-blue-400"
+              ><i class="fab fa-react mr-2"></i>ReactJS</span
+            >
+            <span class="tech-chip text-green-500"
+              ><i class="fab fa-node-js mr-2"></i>NodeJS</span
+            >
+            <span class="tech-chip"
+              ><i class="fab fa-bootstrap mr-2"></i>Bootstrap</span
+            >
+          </div>
+        </div>
+
+        <div class="experience-dot" style="top: 920px"></div>
+        <div
+          class="experience-card-new"
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          <h3 class="font-bold text-2xl text-cyan-400 mb-1">
+            Senior Software Engineer
+          </h3>
+          <p class="text-lg text-gray-300 mb-4">
+            LTI (Cuelogic) <span class="text-indigo-400">(Quattr/Compass)</span>
+          </p>
+
+          <div class="flex items-center space-x-4 text-sm text-gray-400 mb-4">
+            <span
+              ><i class="fas fa-calendar-alt mr-2 text-cyan-500"></i>Apr 2021 -
+              July 2022</span
+            >
+            <span
+              ><i class="fas fa-map-marker-alt mr-2 text-cyan-500"></i>Pune,
+              India</span
+            >
+            <span
+              class="px-2 py-0.5 bg-gray-800 text-xs rounded-full border border-gray-700"
+              >Full-time</span
+            >
+          </div>
+
+          <p class="mb-4 text-gray-400 text-base">
+            Developed AI/Tech Trend Analysis platforms, handling data ingestion
+            and visualization.
+          </p>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-medal mr-2"></i>Key Achievements
+          </p>
+          <ul
+            class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4 mb-4"
+          >
+            <li>
+              Managed **client communication** and requirement gathering for
+              Quattr.
+            </li>
+            <li>
+              Implemented core functionalities using **NextJs** and
+              **Postgres**.
+            </li>
+            <li>
+              Utilized **AWS Cognito** for secure user authentication on
+              Compass.
+            </li>
+            <li>
+              Optimized data fetching mechanisms, improving load times by 20%.
+            </li>
+          </ul>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-tools mr-2"></i>Technologies Used
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-chip text-white"
+              ><i class="fas fa-layer-group mr-2"></i>NextJs</span
+            >
+            <span class="tech-chip text-blue-600"
+              ><i class="fas fa-paw mr-2"></i>Postgres</span
+            >
+            <span class="tech-chip text-orange-500"
+              ><i class="fab fa-aws mr-2"></i>AWS Cognito</span
+            >
+            <span class="tech-chip text-blue-400"
+              ><i class="fab fa-python mr-2"></i>Python</span
+            >
+          </div>
+        </div>
+
+        <div class="experience-dot" style="top: 1350px"></div>
+        <div
+          class="experience-card-new"
+          data-aos="fade-up"
+          data-aos-delay="300"
+        >
+          <h3 class="font-bold text-2xl text-cyan-400 mb-1">
+            Senior Software Engineer
+          </h3>
+          <p class="text-lg text-gray-300 mb-4">
+            myMediaXhange
+            <span class="text-indigo-400">(Outdoor Media Solutions)</span>
+          </p>
+
+          <div class="flex items-center space-x-4 text-sm text-gray-400 mb-4">
+            <span
+              ><i class="fas fa-calendar-alt mr-2 text-cyan-500"></i>Aug 2018 -
+              Apr 2021</span
+            >
+            <span
+              ><i class="fas fa-map-marker-alt mr-2 text-cyan-500"></i>Pune,
+              India</span
+            >
+            <span
+              class="px-2 py-0.5 bg-gray-800 text-xs rounded-full border border-gray-700"
+              >Full-time</span
+            >
+          </div>
+
+          <p class="mb-4 text-gray-400 text-base">
+            Developed and maintained systems for an Outdoor Media sales and
+            inventory management platform.
+          </p>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-medal mr-2"></i>Key Achievements
+          </p>
+          <ul
+            class="list-disc list-inside text-sm text-gray-400 space-y-1 pl-4 mb-4"
+          >
+            <li>
+              Led **Solution Design** and **Database Design** (MySQL) for core
+              modules.
+            </li>
+            <li>
+              Managed client coordination and sprint estimation for the delivery
+              team.
+            </li>
+            <li>
+              Implemented RESTful APIs for integration with third-party
+              advertising services.
+            </li>
+          </ul>
+
+          <p class="font-semibold text-indigo-400 mb-2">
+            <i class="fas fa-tools mr-2"></i>Technologies Used
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="tech-chip text-blue-400"
+              ><i class="fab fa-react mr-2"></i>Reactjs</span
+            >
+            <span class="tech-chip text-blue-400"
+              ><i class="fab fa-python mr-2"></i>Python</span
+            >
+            <span class="tech-chip text-blue-500"
+              ><i class="fas fa-circle-notch mr-2"></i>MySQL</span
+            >
+            <span class="tech-chip"
+              ><i class="fas fa-exchange-alt mr-2"></i>REST API</span
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+      <h2
+        class="text-4xl font-bold mb-12 text-center gradient-text"
+        data-aos="fade-up"
+      >
+        Get In Touch
+      </h2>
+
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div
+          class="w-full md:w-1/3 p-8 bg-gray-900 rounded-xl shadow-2xl border border-indigo-700"
+          data-aos="fade-right"
+        >
+          <h3 class="text-xl font-semibold mb-4 text-cyan-400">
+            Contact Details
+          </h3>
+          <p class="text-lg text-gray-300 mb-6">
+            I'm currently open to new opportunities. Let's connect and discuss
+            how I can contribute to your team's success.
+          </p>
+          <div class="space-y-4">
+            <p class="text-lg text-white">
+              <i class="fas fa-envelope mr-3 text-indigo-400"></i>
+              <a
+                href="mailto:paritosh.mahale@gmail.com"
+                class="hover:text-cyan-400 transition duration-300"
+                >paritosh.mahale@gmail.com</a
+              >
+            </p>
+            <p class="text-lg text-white">
+              <i class="fas fa-phone-alt mr-3 text-indigo-400"></i>Available on
+              request
+            </p>
+            <p class="text-lg text-white">
+              <i class="fab fa-linkedin mr-3 text-indigo-400"></i
+              ><a
+                href="https://www.linkedin.com/in/paritosh-mahale-536020156/"
+                target="_blank"
+                class="hover:underline"
+                >linkedin.com/in/paritosh-mahale/</a
+              >
+            </p>
+            <p class="text-lg text-white">
+              <i class="fab fa-github mr-3 text-indigo-400"></i>
+              <a
+                href="https://github.com/paritosh-mahale"
+                target="_blank"
+                class="hover:text-cyan-400 transition duration-300"
+                >github.com/paritosh-mahale</a
+              >
+            </p>
+          </div>
+        </div>
+        <div
+          class="w-full md:w-2/3 p-8 bg-gray-900 rounded-xl shadow-2xl border border-indigo-700"
+          data-aos="fade-left"
+        >
+          <h3 class="text-xl font-semibold mb-6 text-cyan-400">
+            Send Me a Message
+          </h3>
+
+          <form
+            action="mailto:paritosh.mahale@gmail.com"
+            class="space-y-4"
+            method="post"
+            enctype="text/plain"
+          >
+            <div class="flex flex-col sm:flex-row gap-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500"
+              />
+            </div>
+            <div>
+              <textarea
+                rows="5"
+                placeholder="Your Message"
+                class="w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:border-cyan-500"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-bold transition duration-300 ease-in-out transform hover:scale-[1.01] hover:shadow-lg"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="text-center py-8 border-t border-white/10 mt-10 text-gray-500"
+    >
+      <p>© 2025 Paritosh Mahale.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true,
+        offset: 120,
+      });
+
+      // Typing Animation for Hero Title
+      const typingTextElement = document.getElementById("typing-text");
+      const roles = [
+        "Senior Software Engineer",
+        "Full-Stack Architect",
+        "Product Developer",
+      ];
+      let roleIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeEffect() {
+        const currentRole = roles[roleIndex];
+        if (isDeleting) {
+          typingTextElement.textContent = currentRole.substring(
+            0,
+            charIndex - 1
+          );
+          charIndex--;
+        } else {
+          typingTextElement.textContent = currentRole.substring(
+            0,
+            charIndex + 1
+          );
+          charIndex++;
+        }
+
+        let typeSpeed = 100;
+
+        if (isDeleting) {
+          typeSpeed /= 2;
+        }
+
+        if (!isDeleting && charIndex === currentRole.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          typeSpeed = 500;
+        }
+
+        setTimeout(typeEffect, typeSpeed);
+      }
+      typeEffect();
+
+      // Parallax Effect (Adjusted for subtle movement)
+      document.addEventListener("scroll", function () {
+        const parallaxBg = document.getElementById("parallax-bg");
+        let scrollPosition = window.pageYOffset;
+        parallaxBg.style.transform =
+          "translateY(" + -scrollPosition * 0.05 + "px)";
+      });
+
+      // Custom Mouse Pointer
+      const cursor = document.querySelector(".cursor");
+      const cursorDot = document.querySelector(".cursor-dot");
+
+      document.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.clientX + "px";
+        cursor.style.top = e.clientY + "px";
+        cursorDot.style.left = e.clientX + "px";
+        cursorDot.style.top = e.clientY + "px";
+      });
+      // Function to handle Scrollspy
+      function scrollSpy() {
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        // Define an offset for when the section should be considered "active"
+        // (A negative value like -100 makes the highlight change before the section hits the very top)
+        const offset = -150;
+        let current = "";
+
+        // Determine the current visible section
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+
+          // If the top of the section is within the visible viewport (adjusted by the offset)
+          if (
+            pageYOffset >= sectionTop + offset &&
+            pageYOffset < sectionTop + sectionHeight
+          ) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        // Handle the special case for the header-section section (which is technically not a <section id>)
+        // If we are at the very top of the page, highlight 'header-section' (or no link, depending on preference).
+        if (pageYOffset < document.getElementById("about").offsetTop) {
+          current = "header-section";
+        }
+
+        // Apply the active class to the corresponding navigation link
+        navLinks.forEach((link) => {
+          // Remove active class from all links
+          link.classList.remove("text-cyan-400", "font-bold");
+          link.classList.add("text-gray-400");
+
+          // Check if the link's href matches the current section's ID
+          if (link.getAttribute("href").substring(1) === current) {
+            link.classList.add("text-cyan-400", "font-bold");
+            link.classList.remove("text-gray-400");
+          }
+        });
+      }
+
+      // Attach the scrollSpy function to the scroll event
+      window.addEventListener("scroll", scrollSpy);
+
+      // Run it once on page load to set the initial state
+      document.addEventListener("DOMContentLoaded", scrollSpy);
+    </script>
+  </body>
+</html>
