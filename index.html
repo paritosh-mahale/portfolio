@@ -904,10 +904,10 @@
           </h3>
 
           <form
-            action="mailto:paritosh.mahale@gmail.com"
+            id="contactForm"
             class="space-y-4"
-            method="post"
-            enctype="text/plain"
+            <!-- method="post"
+            enctype="text/plain" -->
           >
             <div class="flex flex-col sm:flex-row gap-4">
               <input
@@ -1067,5 +1067,22 @@
       // Run it once on page load to set the initial state
       document.addEventListener("DOMContentLoaded", scrollSpy);
     </script>
+    
+<script>
+document.getElementById("contactForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const formData = Object.fromEntries(new FormData(e.target).entries());
+
+  const res = await fetch("/api/contact", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(formData),
+  });
+
+  const data = await res.json();
+  alert(data.message || data.error);
+});
+</script>
   </body>
 </html>
+
