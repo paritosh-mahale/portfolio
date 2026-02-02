@@ -32,6 +32,7 @@
       /* CUSTOM MOUSE POINTER */
       body {
         cursor: none; /* Hide default cursor */
+        overflow-x: hidden;
       }
       .cursor {
         width: 20px;
@@ -62,19 +63,150 @@
         border-color: #4f46e5;
       }
 
-      /* PARALLAX BACKGROUND */
-      .parallax-bg {
+      /* ENHANCED PARALLAX BACKGROUND */
+      .parallax-container {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
+        z-index: -10;
+        overflow: hidden;
+      }
+
+      .parallax-bg {
+        position: absolute;
+        top: -10%;
+        left: -10%;
+        width: 120%;
+        height: 120%;
         background-image: url("https://images.unsplash.com/photo-1515879222474-be4818a7c64a?q=80&w=1920&h=1080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
         background-size: cover;
         background-position: center;
-        z-index: -10;
         opacity: 0.04;
         transition: transform 0.1s linear;
+      }
+
+      /* FLOATING PARTICLES */
+      .particle {
+        position: absolute;
+        border-radius: 50%;
+        pointer-events: none;
+        animation: float 20s infinite;
+      }
+
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0) translateX(0);
+        }
+        25% {
+          transform: translateY(-30px) translateX(30px);
+        }
+        50% {
+          transform: translateY(-60px) translateX(-30px);
+        }
+        75% {
+          transform: translateY(-30px) translateX(30px);
+        }
+      }
+
+      .particle-1 {
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.3), transparent);
+        top: 20%;
+        left: 10%;
+        animation-duration: 25s;
+      }
+
+      .particle-2 {
+        width: 80px;
+        height: 80px;
+        background: radial-gradient(circle, rgba(79, 70, 229, 0.2), transparent);
+        top: 60%;
+        right: 15%;
+        animation-duration: 30s;
+        animation-delay: -5s;
+      }
+
+      .particle-3 {
+        width: 50px;
+        height: 50px;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.25), transparent);
+        bottom: 20%;
+        left: 20%;
+        animation-duration: 28s;
+        animation-delay: -10s;
+      }
+
+      /* PARALLAX LAYERS */
+      .parallax-layer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        will-change: transform;
+      }
+
+      /* GEOMETRIC SHAPES FOR PARALLAX */
+      .shape {
+        position: absolute;
+        opacity: 0.1;
+        transition: transform 0.1s linear;
+      }
+
+      .shape-1 {
+        width: 300px;
+        height: 300px;
+        border: 2px solid #22d3ee;
+        border-radius: 50%;
+        top: 10%;
+        right: 10%;
+      }
+
+      .shape-2 {
+        width: 200px;
+        height: 200px;
+        border: 2px solid #4f46e5;
+        transform: rotate(45deg);
+        bottom: 15%;
+        left: 5%;
+      }
+
+      .shape-3 {
+        width: 150px;
+        height: 150px;
+        border: 2px solid #22d3ee;
+        border-radius: 30%;
+        top: 50%;
+        left: 15%;
+      }
+
+      /* SECTION PARALLAX EFFECT */
+      .parallax-section {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .parallax-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
+        transform: translateZ(0);
+        animation: rotate 30s linear infinite;
+        pointer-events: none;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
       }
 
       /* SKILLS CHIP STYLING */
@@ -85,31 +217,32 @@
       .tech-chip:hover {
         @apply bg-indigo-700 text-white 
                    border-indigo-500 shadow-md shadow-indigo-500/30 ring-2 ring-indigo-500;
+        transform: translateY(-2px);
       }
 
       .tech-tag {
         @apply px-2 py-0.5 text-xs bg-gray-800 text-cyan-300 rounded-md;
       }
 
-      /* EXPERIENCE CARD STYLING (Inspired by Reference Image) */
+      /* EXPERIENCE CARD STYLING */
       .experience-card-new {
         background-color: #1a1a1a;
-        border: 1px solid #282836; /* Darker border for contrast */
-        border-radius: 0.75rem; /* rounded-xl */
-        padding: 1.5rem; /* p-6 */
+        border: 1px solid #282836;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
         margin-bottom: 2rem;
         transition: all 0.3s ease-in-out;
         position: relative;
       }
       .experience-card-new:hover {
-        border-color: #4f46e5; /* Indigo hover border */
+        border-color: #4f46e5;
         box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
+        transform: translateX(10px);
       }
 
-      /* Vertical Line mimicking image style */
       .experience-container {
         position: relative;
-        padding-left: 20px; /* Space for the vertical line */
+        padding-left: 20px;
       }
       .experience-container::before {
         content: "";
@@ -118,7 +251,7 @@
         bottom: 0;
         left: 0;
         width: 2px;
-        background-color: #4f46e5; /* Indigo line */
+        background-color: #4f46e5;
       }
       .experience-dot {
         position: absolute;
@@ -126,14 +259,21 @@
         width: 18px;
         height: 18px;
         border-radius: 50%;
-        background-color: #4f46e5; /* Indigo dot */
-        border: 3px solid #1a1a1a; /* Background color for halo effect */
+        background-color: #4f46e5;
+        border: 3px solid #1a1a1a;
         z-index: 10;
-        top: 35px; /* Adjust vertical position */
+        top: 35px;
+        transition: all 0.3s ease;
       }
+      
+      .experience-card-new:hover + .experience-dot,
+      .experience-dot:hover {
+        transform: scale(1.5);
+        box-shadow: 0 0 20px rgba(79, 70, 229, 0.6);
+      }
+
       .text-highlight {
         --tw-text-opacity: 1;
-        /* color: rgb(255 255 255); */
         font-weight: 600;
       }
       .text-purple-600 {
@@ -151,7 +291,6 @@
         color: rgb(187 8 8);
         font-weight: 600;
       }
-
       .text-pink-600 {
         --tw-text-opacity: 1;
         color: rgb(244 114 182 / var(--tw-text-opacity, 1));
@@ -167,18 +306,15 @@
         color: rgb(96 165 250 / var(--tw-text-opacity, 1));
         font-weight: 600;
       }
+
       .colorful-underline::after {
         content: "";
         position: absolute;
         width: 100%;
-        height: 4px; /* Thickness of the line */
-        bottom: -2px; /* Position below text */
+        height: 4px;
+        bottom: -2px;
         left: 0;
-        background-image: linear-gradient(
-          to right,
-          #22d3ee,
-          #4f46e5
-        ); /* Gradient from cyan to indigo */
+        background-image: linear-gradient(to right, #22d3ee, #4f46e5);
         opacity: 0.8;
         border-radius: 2px;
       }
@@ -186,15 +322,52 @@
         position: relative;
         display: inline-block;
       }
+
+      /* SMOOTH SCROLL REVEAL */
+      .reveal {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: all 0.8s ease-out;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* HEADER PARALLAX */
+      header {
+        transition: all 0.3s ease;
+      }
+
+      header.scrolled {
+        background-color: rgba(3, 7, 18, 0.95);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
     </style>
   </head>
   <body class="bg-gray-950 text-gray-100 font-sans">
     <div class="cursor hidden md:block"></div>
     <div class="cursor-dot hidden md:block"></div>
-    <div class="parallax-bg" id="parallax-bg"></div>
+    
+    <!-- Enhanced Parallax Container -->
+    <div class="parallax-container">
+      <div class="parallax-bg" id="parallax-bg"></div>
+      
+      <!-- Floating Particles -->
+      <div class="particle particle-1"></div>
+      <div class="particle particle-2"></div>
+      <div class="particle particle-3"></div>
+      
+      <!-- Geometric Shapes -->
+      <div class="shape shape-1" id="shape-1"></div>
+      <div class="shape shape-2" id="shape-2"></div>
+      <div class="shape shape-3" id="shape-3"></div>
+    </div>
 
     <header
       class="sticky top-0 z-50 bg-gray-950/80 backdrop-blur-sm border-b border-white/10"
+      id="header"
     >
       <nav
         class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
@@ -244,7 +417,7 @@
 
     <section
       id="header-section"
-      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 text-center relative overflow-hidden"
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 text-center relative overflow-hidden parallax-section"
     >
       <h1
         class="text-7xl sm:text-8xl font-extrabold mb-4 relative"
@@ -283,7 +456,7 @@
       </div>
     </section>
 
-    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 parallax-section reveal">
       <h2
         class="text-4xl font-bold mb-12 text-center gradient-text"
         data-aos="fade-up"
@@ -293,7 +466,7 @@
       <div class="flex flex-col md:flex-row items-center gap-12">
         <div class="md:w-2/3" data-aos="fade-right">
           <p class="mb-6 text-lg text-gray-300">
-            I’m a results-driven
+            I'm a results-driven
             <span class="text-highlight colorful-underline"
               >Senior Software Engineer</span
             >
@@ -316,7 +489,7 @@
               >clean, maintainable, and production-ready code</span
             >, consistently adhering to best practices and modern development
             standards using tools like ESLint and Prettier. Beyond technical
-            proficiency, I’m deeply
+            proficiency, I'm deeply
             <span class="text-highlight colorful-underline"
               >committed to collaboration and continuous improvement</span
             >, working closely with cross-functional teams to transform business
@@ -348,33 +521,10 @@
             </p>
           </div>
         </div>
-        <!-- <div
-          class="md:w-1/3 p-6 bg-gray-900 rounded-lg shadow-xl border border-indigo-700"
-          data-aos="fade-left"
-        >
-          <h3 class="text-xl font-semibold mb-4 text-cyan-400">
-            Key Information
-          </h3>
-          <p class="mb-2">
-            <strong class="text-gray-400">Experience:</strong> 6 Years
-          </p>
-          <p class="mb-2">
-            <strong class="text-gray-400">Role:</strong> Senior Software
-            Engineer
-          </p>
-          <p class="mb-2">
-            <strong class="text-gray-400">Education:</strong> Bachelor of
-            Engineering in IT
-          </p>
-          <p>
-            <strong class="text-gray-400">Contact:</strong>
-            hello.paritoshmahale@gmail.com
-          </p>
-        </div> -->
       </div>
     </section>
 
-    <section id="techstack" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+    <section id="techstack" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 parallax-section reveal">
       <h2
         class="text-4xl font-bold mb-12 text-center gradient-text"
         data-aos="fade-up"
@@ -543,7 +693,7 @@
 
     <section
       id="experience"
-      class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
+      class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 parallax-section reveal"
     >
       <h2
         class="text-4xl font-bold mb-16 text-center gradient-text"
@@ -842,7 +992,7 @@
       </div>
     </section>
 
-    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
+    <section id="contact" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 parallax-section reveal">
       <h2
         class="text-4xl font-bold mb-12 text-center gradient-text"
         data-aos="fade-up"
@@ -906,7 +1056,6 @@
           <form
             id="contactForm"
             class="space-y-4"
-            
           >
             <div class="flex flex-col sm:flex-row gap-4">
               <input
@@ -944,15 +1093,23 @@
     <footer
       class="text-center py-8 border-t border-white/10 mt-10 text-gray-500"
     >
-      <p>© 2025 Paritosh Mahale.</p>
+      <p>© <span id="year"></span> Paritosh Mahale.</p>
     </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-      AOS.init({
-        duration: 1000,
-        once: true,
-        offset: 120,
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+    <script>
+      // Wait for AOS library to load
+      window.addEventListener('load', function() {
+        if (typeof AOS !== 'undefined') {
+          AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 120,
+          });
+        }
       });
 
       // Typing Animation for Hero Title
@@ -1001,40 +1158,102 @@
       }
       typeEffect();
 
-      // Parallax Effect (Adjusted for subtle movement)
-      document.addEventListener("scroll", function () {
+      // Enhanced Parallax Effect with Multiple Layers
+      let ticking = false;
+      
+      function updateParallax() {
+        const scrollPosition = window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        
+        // Main background parallax
         const parallaxBg = document.getElementById("parallax-bg");
-        let scrollPosition = window.pageYOffset;
-        parallaxBg.style.transform =
-          "translateY(" + -scrollPosition * 0.05 + "px)";
+        if (parallaxBg) {
+          parallaxBg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        }
+        
+        // Geometric shapes parallax with different speeds
+        const shape1 = document.getElementById("shape-1");
+        const shape2 = document.getElementById("shape-2");
+        const shape3 = document.getElementById("shape-3");
+        
+        if (shape1) shape1.style.transform = `translateY(${scrollPosition * 0.15}px) rotate(${scrollPosition * 0.05}deg)`;
+        if (shape2) shape2.style.transform = `translateY(${scrollPosition * -0.1}px) rotate(${45 + scrollPosition * 0.03}deg)`;
+        if (shape3) shape3.style.transform = `translateY(${scrollPosition * 0.2}px) rotate(${scrollPosition * -0.04}deg)`;
+        
+        ticking = false;
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      }
+      
+      // Only start parallax after page is loaded
+      window.addEventListener('load', function() {
+        document.addEventListener("scroll", requestTick);
+        updateParallax(); // Initial call
+      });
+
+      // Scroll Reveal Animation
+      function reveal() {
+        const reveals = document.querySelectorAll('.reveal');
+        
+        reveals.forEach(element => {
+          const windowHeight = window.innerHeight;
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          
+          if (elementTop < windowHeight - elementVisible) {
+            element.classList.add('active');
+          }
+        });
+      }
+      
+      window.addEventListener('scroll', reveal);
+      window.addEventListener('load', reveal); // Initial check on load
+
+      // Header Scroll Effect
+      window.addEventListener('load', function() {
+        const header = document.getElementById('header');
+        if (header) {
+          window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+              header.classList.add('scrolled');
+            } else {
+              header.classList.remove('scrolled');
+            }
+          });
+        }
       });
 
       // Custom Mouse Pointer
-      const cursor = document.querySelector(".cursor");
-      const cursorDot = document.querySelector(".cursor-dot");
+      document.addEventListener('DOMContentLoaded', function() {
+        const cursor = document.querySelector(".cursor");
+        const cursorDot = document.querySelector(".cursor-dot");
 
-      document.addEventListener("mousemove", (e) => {
-        cursor.style.left = e.clientX + "px";
-        cursor.style.top = e.clientY + "px";
-        cursorDot.style.left = e.clientX + "px";
-        cursorDot.style.top = e.clientY + "px";
+        if (cursor && cursorDot) {
+          document.addEventListener("mousemove", (e) => {
+            cursor.style.left = e.clientX + "px";
+            cursor.style.top = e.clientY + "px";
+            cursorDot.style.left = e.clientX + "px";
+            cursorDot.style.top = e.clientY + "px";
+          });
+        }
       });
-      // Function to handle Scrollspy
+
+      // Scrollspy Function
       function scrollSpy() {
         const sections = document.querySelectorAll("section[id]");
         const navLinks = document.querySelectorAll(".nav-link");
-
-        // Define an offset for when the section should be considered "active"
-        // (A negative value like -100 makes the highlight change before the section hits the very top)
         const offset = -150;
         let current = "";
 
-        // Determine the current visible section
         sections.forEach((section) => {
           const sectionTop = section.offsetTop;
           const sectionHeight = section.clientHeight;
 
-          // If the top of the section is within the visible viewport (adjusted by the offset)
           if (
             pageYOffset >= sectionTop + offset &&
             pageYOffset < sectionTop + sectionHeight
@@ -1043,19 +1262,15 @@
           }
         });
 
-        // Handle the special case for the header-section section (which is technically not a <section id>)
-        // If we are at the very top of the page, highlight 'header-section' (or no link, depending on preference).
-        if (pageYOffset < document.getElementById("about").offsetTop) {
+        const aboutSection = document.getElementById("about");
+        if (aboutSection && pageYOffset < aboutSection.offsetTop) {
           current = "header-section";
         }
 
-        // Apply the active class to the corresponding navigation link
         navLinks.forEach((link) => {
-          // Remove active class from all links
           link.classList.remove("text-cyan-400", "font-bold");
           link.classList.add("text-gray-400");
 
-          // Check if the link's href matches the current section's ID
           if (link.getAttribute("href").substring(1) === current) {
             link.classList.add("text-cyan-400", "font-bold");
             link.classList.remove("text-gray-400");
@@ -1063,31 +1278,33 @@
         });
       }
 
-      // Attach the scrollSpy function to the scroll event
       window.addEventListener("scroll", scrollSpy);
-
-      // Run it once on page load to set the initial state
       document.addEventListener("DOMContentLoaded", scrollSpy);
+
+      // Contact Form Handler
+      document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const formData = Object.fromEntries(new FormData(e.target).entries());
+
+            try {
+              const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+              });
+
+              const data = await res.json();
+              alert(data.message || data.error);
+            } catch (error) {
+              console.error("Form submission error:", error);
+              alert("There was an error sending your message. Please try again.");
+            }
+          });
+        }
+      });
     </script>
-    
-<script>
-document.getElementById("contactForm").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const formData = Object.fromEntries(new FormData(e.target).entries());
-
-  const res = await fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(formData),
-  });
-
-  const data = await res.json();
-  alert(data.message || data.error);
-});
-</script>
   </body>
 </html>
-
-
-
-
